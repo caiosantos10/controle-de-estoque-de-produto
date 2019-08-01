@@ -28,5 +28,4 @@ public class ControleDeEstoqueDeProdutoApplication implements CommandLineRunner 
 		
 		produtoRepository.saveAll(Arrays.asList(bolacha, leite, pao)); 
 	}
-
 }
