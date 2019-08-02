@@ -1,8 +1,6 @@
 package com.projeto.controleDeEstoque.domain;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +19,7 @@ public class Produto implements Serializable {
 	private String descricao;
 	private double preco;
 	private Integer unidade;
-	private Calendar dataCadastro;
+	private Long dataCadastro;
 	
 	public Produto() {}
 	
@@ -32,7 +30,7 @@ public class Produto implements Serializable {
 		this.descricao = descricao;
 		this.preco = preco;
 		this.unidade = unidade;
-		this.dataCadastro = Calendar.getInstance();
+		this.dataCadastro = System.currentTimeMillis();
 	}
 	public Integer getId() {
 		return id;
@@ -69,8 +67,8 @@ public class Produto implements Serializable {
 		this.unidade = unidade.getCod();
 	}
 	
-	public Date getDataCadastro() {
-		return dataCadastro.getTime();
+	public Long getDataCadastro() {
+		return dataCadastro;
 	}
 //	public void setDataCadastro(Calendar dataCadastro) {
 //		this.dataCadastro = dataCadastro;
