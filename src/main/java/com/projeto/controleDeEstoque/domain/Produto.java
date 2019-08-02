@@ -21,6 +21,7 @@ public class Produto implements Serializable {
 	private Integer unidade;
 	private Long dataCadastro;
 	
+	
 	public Produto() {}
 	
 	public Produto(Integer id, String nome, String descricao, double preco, Integer unidade) {
@@ -70,9 +71,9 @@ public class Produto implements Serializable {
 	public Long getDataCadastro() {
 		return dataCadastro;
 	}
-//	public void setDataCadastro(Calendar dataCadastro) {
-//		this.dataCadastro = dataCadastro;
-//	}
+	public void setDataCadastro(Long dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
 
 	@Override
 	public int hashCode() {

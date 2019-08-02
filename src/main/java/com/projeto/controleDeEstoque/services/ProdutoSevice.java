@@ -15,14 +15,19 @@ public class ProdutoSevice {
 	@Autowired
 	private ProdutoRepository repo;
 	
-	public Produto buscar(Integer id) {
+	public Produto find(Integer id) {
 		Optional<Produto> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 		"Objeto não encontrado! Id: " + id + ", Tipo: " + Produto.class.getName()));
 	}
 	
-	public Produto inserir(Produto obj) {
+	public Produto insert(Produto obj) {
 		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Produto update (Produto obj) {
+		find(obj.getId());
 		return repo.save(obj);
 	}
 }

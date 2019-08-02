@@ -22,21 +22,28 @@ public class ProdutoResource {
 	private ProdutoSevice service;
 	
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id){
-		Produto obj = service.buscar(id);
+	public ResponseEntity<Produto> find(@PathVariable Integer id){
+		Produto obj = service.find(id);
 		return ResponseEntity.ok().body(obj);		
 		
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Produto obj){
-		obj = service.inserir(obj);
+		obj = service.insert(obj);
 		
 		//Realizando chamada a URI localhost:8080/produtos/{obj.getId} 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().
 				path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 		
+	}
+	
+	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<?> update(@RequestBody Produto obj, @PathVariable Integer id){
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 
 }
