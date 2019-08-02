@@ -1,6 +1,7 @@
 package com.projeto.controleDeEstoque.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,6 +51,13 @@ public class ProdutoResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
+		
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<Produto>> findAll(){
+		List<Produto> list = service.findAll();
+		return ResponseEntity.ok().body(list);		
 		
 	}
 	

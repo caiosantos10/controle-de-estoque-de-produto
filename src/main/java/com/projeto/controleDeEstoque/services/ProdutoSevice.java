@@ -1,5 +1,6 @@
 package com.projeto.controleDeEstoque.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,9 @@ public class ProdutoSevice {
 	public void delete (Integer id) {
 		find(id);
 		repo.deleteById(id);
+	}
+
+	public List<Produto> findAll() {
+		return repo.findAll();
 	}
 }
