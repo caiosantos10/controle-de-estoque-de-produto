@@ -22,9 +22,27 @@ public class ProdutoSevice {
 		"Objeto não encontrado! Id: " + id + ", Tipo: " + Produto.class.getName()));
 	}
 	
+	public Produto findByNome(String nome) {
+		Produto obj = repo.findByNome(nome);
+			if (obj == null) {
+				throw new ObjectNotFoundException("Objeto não encontrado! Nome: " + nome
+						+ ", Tipo: " + Produto.class.getName());
+			}
+			return obj;
+	}
+	
+	@SuppressWarnings("finally")
 	public Produto insert(Produto obj) {
-		obj.setId(null);
-		return repo.save(obj);
+		try {
+			findByNome(obj.getNome());
+		} catch(ObjectNotFoundException e) {
+			obj.setId(null);
+			return repo.save(obj);
+		} finally {
+			int aux = obj.getQuantidade();
+			obj.setQuantidade(aux++);
+			return update(obj);
+		}
 	}
 	
 	public Produto update (Produto obj) {

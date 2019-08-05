@@ -20,11 +20,15 @@ public class Produto implements Serializable {
 	private double preco;
 	private Integer unidade;
 	private Long dataCadastro;
+	private Integer quantidade;
+	private boolean ativo;
 	
 	
 	public Produto() {}
 	
-	public Produto(Integer id, String nome, String descricao, double preco, Integer unidade) {
+	public Produto(Integer id, String nome, String descricao, double preco, Integer unidade, 
+			Integer quantidade, boolean ativo) {
+		//
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -32,6 +36,8 @@ public class Produto implements Serializable {
 		this.preco = preco;
 		this.unidade = unidade;
 		this.dataCadastro = System.currentTimeMillis();
+		this.quantidade = quantidade;
+		this.ativo = ativo;
 	}
 	public Integer getId() {
 		return id;
@@ -74,6 +80,23 @@ public class Produto implements Serializable {
 	public void setDataCadastro(Long dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
+	
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+	
+	public String getAtivo() {
+		if(ativo)
+			return "SIM";
+		return "NAO";
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
 
 	@Override
 	public int hashCode() {
@@ -98,8 +121,6 @@ public class Produto implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-	
-	
+	}	
 	
 }

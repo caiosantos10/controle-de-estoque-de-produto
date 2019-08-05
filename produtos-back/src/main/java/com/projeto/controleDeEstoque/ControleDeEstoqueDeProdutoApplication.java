@@ -22,9 +22,9 @@ public class ControleDeEstoqueDeProdutoApplication implements CommandLineRunner 
 
 	@Override
 	public void run(String... args) throws Exception {
-		Produto bolacha = new Produto(null, "Bolacha", "Bolacha 3 de maio", 3.50, 2);
-		Produto leite = new Produto(null, "Leite em po", "leite em po Molico", 6.90, 2);
-		Produto pao = new Produto(null, "Pao", "Pao integral", 3.50, 1);
+		Produto bolacha = new Produto(null, "Bolacha", "Bolacha 3 de maio", 3.50, 2, 2, false);
+		Produto leite = new Produto(null, "Leite em po", "leite em po Molico", 6.90, 3, 10, false);
+		Produto pao = new Produto(null, "Pao", "Pao integral", 3.50, 1, 5, true);
 		
 		produtoRepository.saveAll(Arrays.asList(bolacha, leite, pao)); 
 	}
