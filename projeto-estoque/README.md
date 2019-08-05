@@ -17,8 +17,5 @@ npm run serve
 npm run build
 ```
 
-## Portas
 
-front na porta localhost:8081
-back na porta localhost:8080
 

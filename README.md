@@ -1,39 +1,14 @@
 # projeto-controle-de-estoque-de-produto
 
-Na pasta /produtos-back se encontra o BackEnd (REST API).
-Na pasta /projeto-estoque se encontra o FrontEnd.
+Aplicação em Vue.js que consome uma Api Rest (Springboot)
+A api se encontra em /produtos-back
+O front end se encontra em /projeto-estoque
 
 ## Execute a api
 Basta executar o arquivo com o seguinte path:
 \produtos-back\src\main\java\com\projeto\controleDeEstoque\ControleDeEstoqueDeProdutoApplication.java
 
-## Project setup
+## Portas
 
-npm install
-
-
-
-## Compiles and hot-reloads for development
-
-npm run serve
-
-
-
-## Compiles and minifies for production
-
-npm run build
-
-
-
-## Run your tests
-npm run test
-
-Lints and fixes files
-
-npm run lint
-
-
-
-## Customize configuration
-
-See Configuration Reference.
+front na porta localhost:8081
+back na porta localhost:8080
