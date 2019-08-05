@@ -93,7 +93,7 @@
             <td>{{ produto.ativo }}</td>
             <td>
               <button @click="editar(produto)" class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
-              <button class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
+              <button @click="deletar(produto)" class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
             </td>
 
           </tr>
@@ -165,6 +165,18 @@ export default {
 
     editar(produto){
       this.produto = produto
+    },
+
+    deletar(produto){
+      if(confirm('Deseja excluir este produto?')){
+          Produto.deletar(produto).then(resposta => {
+          this.listar();
+        }).catch(e => {
+
+        })
+
+      }
+      
     }
 
   }
