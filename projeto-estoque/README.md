@@ -1,5 +1,7 @@
 # projeto-estoque
 
+Aplicação em Vue.js que consome uma Api Rest (Springboot)
+
 ## Project setup
 ```
 npm install
@@ -15,15 +17,8 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
+## Portas
 
-### Lints and fixes files
-```
-npm run lint
-```
+front na porta localhost:8081
+back na porta localhost:8080
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
