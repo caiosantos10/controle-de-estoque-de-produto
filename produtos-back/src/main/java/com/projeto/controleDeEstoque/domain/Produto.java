@@ -88,10 +88,11 @@ public class Produto implements Serializable {
 		this.quantidade = quantidade;
 	}
 	
-	public String getAtivo() {
-		if(ativo)
-			return "SIM";
-		return "NAO";
+	public boolean getAtivo() {
+//		if(ativo)
+//			return "SIM";
+//		return "NAO";
+		return ativo;
 	}
 
 	public void setAtivo(boolean ativo) {
