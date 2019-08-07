@@ -10,17 +10,17 @@
     <div class="container">
       <form @submit.prevent="salvar">
           
-          <label>Nome</label>
+          <label>Nome *</label>
           <input type="text" placeholder="Nome" v-model="produto.nome" required> 
           
           <div class="row">
             <div class="col s2">
-              <label>Quantidade</label>
+              <label>Quantidade *</label>
               <input type="number" placeholder="Quantidade" v-model="produto.quantidade" required>
             </div>
             <div class="col s2">
-              <label>Valor</label>
-              <input type="number" placeholder="Valor" v-model="produto.preco" required>
+              <label>Valor *</label>
+              <input id="preco" placeholder="Valor" step="0.010" v-model="produto.preco" required>
             </div>
           </div>
           
@@ -85,7 +85,7 @@
           <tr v-for="produto of produtos" :key="produto.id">
             <td>{{ produto.nome }}</td>
             <td>{{ produto.quantidade }}</td>
-            <td>{{ produto.preco }}</td>
+            <td>R$ {{ produto.preco }}</td>
             <td>{{ produto.unidade }}</td>
             <td>{{ new Date (produto.dataCadastro).toLocaleDateString() }}</td>
             <td>{{ produto.descricao }}</td>
@@ -129,7 +129,7 @@ export default {
   },
 
   mounted(){
-    this.listar()
+    this.listar()    
   },
 
   methods:{
