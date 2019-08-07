@@ -89,7 +89,7 @@
             <td>{{ produto.unidade }}</td>
             <td>{{ new Date (produto.dataCadastro).toLocaleDateString() }}</td>
             <td>{{ produto.descricao }}</td>
-            <td>{{ produto.ativo }}</td>
+            <td>{{ true == produto.ativo ? 'SIM' : 'NÃO' }}</td>
             <td>
               <button @click="editar(produto)" class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
               <button @click="deletar(produto)" class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
