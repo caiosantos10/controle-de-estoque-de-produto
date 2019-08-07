@@ -142,6 +142,7 @@ export default {
     salvar(){
       
       if(!this.produto.id){
+            this.produto.dataCadastro = new Date().getTime();
             Produto.salvar(this.produto).then(resposta => {
             this.produto = {}
             alert('Salvo com sucesso!')
