@@ -27,7 +27,7 @@ public class Produto implements Serializable {
 	public Produto() {}
 	
 	public Produto(Integer id, String nome, String descricao, double preco, Integer unidade, 
-			Integer quantidade, boolean ativo) {
+			Integer quantidade, boolean ativo, Long dataCadastro) {
 		//
 		super();
 		this.id = id;
@@ -35,7 +35,7 @@ public class Produto implements Serializable {
 		this.descricao = descricao;
 		this.preco = preco;
 		this.unidade = unidade;
-		this.dataCadastro = System.currentTimeMillis();
+		this.dataCadastro = dataCadastro;
 		this.quantidade = quantidade;
 		this.ativo = ativo;
 	}

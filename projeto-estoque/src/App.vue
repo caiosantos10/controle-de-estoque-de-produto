@@ -72,7 +72,7 @@
             <th>QTD</th>
             <th>VALOR</th>
             <th>UNIDADE</th>
-            <th>CADASTRO</th>
+            <th>DATA CADASTRO</th>
             <th>DESCRIÇÃO</th>
             <th>ATIVO?</th>
             <th>OPÇÕES</th>
@@ -83,12 +83,11 @@
         <tbody>
 
           <tr v-for="produto of produtos" :key="produto.id">
-            {{ produto.id }}
             <td>{{ produto.nome }}</td>
             <td>{{ produto.quantidade }}</td>
             <td>{{ produto.preco }}</td>
             <td>{{ produto.unidade }}</td>
-            <td>{{ produto.dataCadastro }}</td>
+            <td>{{ new Date (produto.dataCadastro).toLocaleDateString() }}</td>
             <td>{{ produto.descricao }}</td>
             <td>{{ produto.ativo }}</td>
             <td>
@@ -121,7 +120,7 @@ export default {
         quantidade:'',
         preco:'',
         unidade:'',
-        dataCadastro:'',
+        dataCadastro: '',
         descricao:'',
         ativo:''
       },
