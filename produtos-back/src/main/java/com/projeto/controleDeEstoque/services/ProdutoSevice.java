@@ -58,4 +58,8 @@ public class ProdutoSevice {
 	public List<Produto> findAll() {
 		return repo.findAll();
 	}
+	
+	public List<Produto> findAllByPartOfNome(String nome) {
+		return repo.findProdutosWithPartOfNome(nome);
+	}
 }

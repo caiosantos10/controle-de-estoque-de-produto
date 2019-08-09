@@ -67,5 +67,13 @@ public class ProdutoResource {
 		
 	}
 	
+	@CrossOrigin
+	@RequestMapping(value = "/filtro/{nome}", method=RequestMethod.GET)
+	public ResponseEntity<List<Produto>> findAllByPartOfNome(@PathVariable String nome){
+		List<Produto> list = service.findAllByPartOfNome(nome);
+		return ResponseEntity.ok().body(list);		
+		
+	}
+	
 
 }
