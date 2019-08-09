@@ -83,5 +83,21 @@ public class ProdutoResource {
 		
 	}
 	
+	@CrossOrigin
+	@RequestMapping(value = "/beforeData/{data}", method=RequestMethod.GET)
+	public ResponseEntity<List<Produto>> findAllByBeforeData(@PathVariable Long data){
+		List<Produto> list = service.findAllByBeforeData(data);
+		return ResponseEntity.ok().body(list);		
+		
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/afterData/{data}", method=RequestMethod.GET)
+	public ResponseEntity<List<Produto>> findAllByAfterData(@PathVariable Long data){
+		List<Produto> list = service.findAllByAfterData(data);
+		return ResponseEntity.ok().body(list);		
+		
+	}
+	
 
 }

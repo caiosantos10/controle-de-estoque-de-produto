@@ -1,67 +1,78 @@
 <template>
   <div id="app">
-
     <nav>
       <div class="nav-wrapper blue darken-1">
         <a href="#" class="brand-logo center">Estoque de Produtos</a>
       </div>
     </nav>
-
+    
+    <div>
+      <h5 class="center-align">Cadastre seu produto</h5>
+    </div>  
+    
     <div class="container">
       <form @submit.prevent="salvar">
-          
-          <label>Nome *</label>
-          <input type="text" placeholder="Nome" v-model="produto.nome" required> 
-          
+
           <div class="row">
+            <div class="col s7">
+              <label>Nome *</label>
+              <input type="text" placeholder="Nome" v-model="produto.nome" required> 
+            </div>
+            <div class="col s1">
+              <label>Valor *</label>
+              <input id="preco" placeholder="Valor" step="0.010" v-model="produto.preco" required>
+            </div>
             <div class="col s2">
               <label>Quantidade *</label>
               <input type="number" placeholder="Quantidade" v-model="produto.quantidade" required>
             </div>
             <div class="col s2">
-              <label>Valor *</label>
-              <input id="preco" placeholder="Valor" step="0.010" v-model="produto.preco" required>
-            </div>
+              <label>Está Ativo?</label>
+              <div class="switch">
+                <label>
+                  Off
+                  <input type="checkbox" v-model="produto.ativo"/>
+                  <span class="lever"></span>
+                  On
+                </label>
+              </div>
+              </div>
           </div>
-          
-          <label>Descrição</label>
-          <input type="text" placeholder="Descrição" v-model="produto.descricao">
-          
-          <label>Unidade</label>
-        <form action="#">
-          <p>
-            <label>
-              <input name="group1" type="radio" v-model="produto.unidade" v-bind:value="'KG'" />
-              <span>Kg</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input name="group1" type="radio" v-model="produto.unidade" v-bind:value="'LT'"/>
-              <span>Litro</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input name="group1" type="radio" v-model="produto.unidade" v-bind:value="'UN'" checked/>
-              <span>Unidade</span>
-            </label>
-          </p>
-        </form>
-            
-          
-          <form action="#">
-            <p>
-              <label>
-                <input type="checkbox" v-model="produto.ativo"/>
-                <span>Ativo</span>
-              </label>
-            </p>
-          </form>
 
-          <button class="waves-effect waves-light btn-small">Salvar<i class="material-icons left">save</i></button>
+          <div class="row">
+            <div class="col s10">
+              <label>Descrição</label>
+              <input type="text" placeholder="Descrição" v-model="produto.descricao">
+            </div>
+            <div class="col s1">
+              <label>Unidade</label>
+              <form action="#">
+                
+                  <label>
+                    <input name="group1" type="radio" v-model="produto.unidade" v-bind:value="'KG'" />
+                    <span>Kg</span>
+                  </label>
+                
+                  <label>
+                    <input name="group1" type="radio" v-model="produto.unidade" v-bind:value="'LT'"/>
+                    <span>Litro</span>
+                  </label>
+                
+                  <label>
+                    <input name="group1" type="radio" v-model="produto.unidade" v-bind:value="'UN'" checked/>
+                    <span>Unidade</span>
+                  </label>
+                
+              </form>
+            </div>
+            <button class="waves-effect waves-light btn-small ">Salvar<i class="material-icons left">save</i></button>
+          </div>
 
       </form>
+
+       <div>
+        <h5 class="center-align">Lista de produtos</h5>
+      </div>  
 
       <table>
 

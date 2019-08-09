@@ -66,4 +66,12 @@ public class ProdutoSevice {
 	public List<Produto> findAllByAtivo(boolean ativo) {
 		return repo.findByAtivo(ativo);
 	}
+	
+	public List<Produto> findAllByAfterData(Long dataCadastro) {
+		return repo.findByAfterData(dataCadastro);
+	}
+	
+	public List<Produto> findAllByBeforeData(Long dataCadastro) {
+		return repo.findByBeforeData(dataCadastro);
+	}
 }
