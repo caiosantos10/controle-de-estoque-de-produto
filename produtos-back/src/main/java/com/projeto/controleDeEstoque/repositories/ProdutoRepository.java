@@ -17,4 +17,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer>{
 	
 	@Query("SELECT p FROM Produto p WHERE p.nome LIKE CONCAT('%', :nome, '%')")
 	List<Produto> findProdutosWithPartOfNome(@Param("nome") String nome);
+	
+	@Query("SELECT p FROM Produto p WHERE p.ativo = ?1")
+	List<Produto> findByAtivo(boolean ativo);
 }

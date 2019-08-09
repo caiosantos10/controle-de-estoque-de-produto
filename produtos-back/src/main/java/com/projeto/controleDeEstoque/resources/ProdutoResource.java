@@ -68,9 +68,17 @@ public class ProdutoResource {
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/filtro/{nome}", method=RequestMethod.GET)
+	@RequestMapping(value = "/nome/{nome}", method=RequestMethod.GET)
 	public ResponseEntity<List<Produto>> findAllByPartOfNome(@PathVariable String nome){
 		List<Produto> list = service.findAllByPartOfNome(nome);
+		return ResponseEntity.ok().body(list);		
+		
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/ativo/{ativo}", method=RequestMethod.GET)
+	public ResponseEntity<List<Produto>> findAllByAtivo(@PathVariable boolean ativo){
+		List<Produto> list = service.findAllByAtivo(ativo);
 		return ResponseEntity.ok().body(list);		
 		
 	}
