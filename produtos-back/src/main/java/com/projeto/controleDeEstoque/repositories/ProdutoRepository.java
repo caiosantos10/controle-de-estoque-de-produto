@@ -21,9 +21,9 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer>{
 	@Query("SELECT p FROM Produto p WHERE p.ativo = ?1")
 	List<Produto> findByAtivo(boolean ativo);
 	
-	@Query("SELECT p FROM Produto p WHERE p.dataCadastro >= ?1")
+	@Query("SELECT p FROM Produto p WHERE p.dataCadastro <= ?1")
 	List<Produto> findByBeforeData(Long dataCadastro);
 	
-	@Query("SELECT p FROM Produto p WHERE p.dataCadastro <= ?1")
+	@Query("SELECT p FROM Produto p WHERE p.dataCadastro >= ?1")
 	List<Produto> findByAfterData(Long dataCadastro);
 }

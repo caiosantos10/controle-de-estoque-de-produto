@@ -16,6 +16,10 @@ export default {
 
     deletar:(produto) => {
         return http.delete(`produtos/${produto.id}`)
+    },
+
+    buscarPorNome:(nome) => {
+        return http.get(`produtos/nome/${nome}`)
     }
 
 }

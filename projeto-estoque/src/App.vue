@@ -72,7 +72,22 @@
 
        <div>
         <h5 class="center-align">Lista de produtos</h5>
-      </div>  
+      </div> 
+
+     
+        <form @submit.prevent="buscarPorNome">
+          <div class="row">
+            <div>
+              <label>Filtrar por:</label>
+              <input type="text" placeholder="Nome" v-model="aux.nome"> 
+            </div>
+               
+               <button class="waves-effect waves-light btn-small">Buscar<i class="material-icons left">search</i></button>
+          </div>
+           
+         
+        </form>
+      
 
       <table>
 
@@ -135,12 +150,15 @@ export default {
         descricao:'',
         ativo:''
       },
-      produtos:[]
+      produtos:[],
+      aux: {
+        nome:''
+      }
     }
   },
 
   mounted(){
-    this.listar()    
+    this.listar()   
   },
 
   methods:{
@@ -148,6 +166,17 @@ export default {
       Produto.listar().then(resposta => {
         this.produtos = resposta.data
       })  
+    },
+
+    buscarPorNome(){
+      if(!this.aux.nome){
+        return this.listar();
+      }
+      Produto.buscarPorNome(this.aux.nome).then(resposta => {
+        this.produtos = resposta.data
+        //console.log(resposta.data)
+        this.aux = {}
+      })
     },
     
     salvar(){
