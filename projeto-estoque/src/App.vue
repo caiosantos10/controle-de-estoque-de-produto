@@ -78,7 +78,7 @@
       <form @submit.prevent="buscarPorNome">
         <div class="row ">
           <div>
-            <label>Filtrar por:</label>
+            <label>Filtrar por: Nome.</label>
             <input type="text" placeholder="Nome" v-model="aux.nome"> 
           </div>
              <button class="waves-effect waves-light btn-small">Buscar<i class="material-icons left">search</i></button>
@@ -89,7 +89,7 @@
       <form class="" @submit.prevent="buscarPorAtivo">
         <div class="row ">
           <div class="col s3">
-            <label>Filtrar por:</label>
+            <label>Filtrar por: </label>
             <label>Está Ativo?</label>
               <div class="switch">
                 <label>
@@ -108,7 +108,7 @@
       <form class="" @submit.prevent="buscarPorBeforeData">
         <div class="row ">
           <div>
-            <label>Filtrar por:</label>
+            <label>Filtrar por: Até a data...</label>
             <input type="date" placeholder="Até a data..." v-model="aux.dataCadastro"> 
           </div>
              <button class="waves-effect waves-light btn-small">Buscar<i class="material-icons left">search</i></button>
@@ -217,9 +217,11 @@ export default {
     },
 
     buscarPorBeforeData(){
-      Produto.buscarPorBeforeData(new Date(Date(this.aux.dataCadastro)).getTime()).then(resposta => {
+      let data = new Date().getTime(this.aux.dataCadastro)
+
+      Produto.buscarPorBeforeData(data).then(resposta => {
         this.produtos = resposta.data
-        console.log(resposta.data)
+        console.log(this.aux.dataCadastro, data)
         this.aux = {}
       })
     },
