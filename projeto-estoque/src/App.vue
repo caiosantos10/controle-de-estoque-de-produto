@@ -74,19 +74,46 @@
         <h5 class="center-align">Lista de produtos</h5>
       </div> 
 
-     
-        <form @submit.prevent="buscarPorNome">
-          <div class="row">
-            <div>
-              <label>Filtrar por:</label>
-              <input type="text" placeholder="Nome" v-model="aux.nome"> 
-            </div>
-               
-               <button class="waves-effect waves-light btn-small">Buscar<i class="material-icons left">search</i></button>
+      <!--Filtragem de produtos por nome--> 
+      <form @submit.prevent="buscarPorNome">
+        <div class="row ">
+          <div>
+            <label>Filtrar por:</label>
+            <input type="text" placeholder="Nome" v-model="aux.nome"> 
           </div>
-           
-         
-        </form>
+             <button class="waves-effect waves-light btn-small">Buscar<i class="material-icons left">search</i></button>
+        </div>
+      </form>
+
+      <!--Filtragem de produtos por ativo/inativo -->
+      <form class="" @submit.prevent="buscarPorAtivo">
+        <div class="row ">
+          <div class="col s3">
+            <label>Filtrar por:</label>
+            <label>Está Ativo?</label>
+              <div class="switch">
+                <label>
+                  Off
+                  <input type="checkbox" v-model="aux.ativo"/>
+                  <span class="lever"></span>
+                  On
+                </label>
+              </div>   
+          </div>
+             <button class="waves-effect waves-light btn-small">Buscar<i class="material-icons left">search</i></button>
+        </div>
+      </form>
+
+      <!--Filtragem de produtos por Data -->
+      <form class="" @submit.prevent="buscarPorBeforeData">
+        <div class="row ">
+          <div>
+            <label>Filtrar por:</label>
+            <input type="date" placeholder="Até a data..." v-model="aux.dataCadastro"> 
+          </div>
+             <button class="waves-effect waves-light btn-small">Buscar<i class="material-icons left">search</i></button>
+        </div>
+      </form>
       
 
       <table>
@@ -152,7 +179,9 @@ export default {
       },
       produtos:[],
       aux: {
-        nome:''
+        nome:'',
+        dataCadastro:'',
+        ativo:''
       }
     }
   },
@@ -175,6 +204,22 @@ export default {
       Produto.buscarPorNome(this.aux.nome).then(resposta => {
         this.produtos = resposta.data
         //console.log(resposta.data)
+        this.aux = {}
+      })
+    },
+
+    buscarPorAtivo(){
+      Produto.buscarPorAtivo(this.aux.ativo).then(resposta => {
+        this.produtos = resposta.data
+        //console.log(resposta.data)
+        this.aux = {}
+      })
+    },
+
+    buscarPorBeforeData(){
+      Produto.buscarPorBeforeData(new Date(Date(this.aux.dataCadastro)).getTime()).then(resposta => {
+        this.produtos = resposta.data
+        console.log(resposta.data)
         this.aux = {}
       })
     },

@@ -20,6 +20,14 @@ export default {
 
     buscarPorNome:(nome) => {
         return http.get(`produtos/nome/${nome}`)
+    },
+
+    buscarPorAtivo:(isAtivo) => {
+        return http.get(`produtos/ativo/${isAtivo}`)
+    },
+    
+    buscarPorBeforeData:(data) => {
+        return http.get(`produtos/beforeData/${data}`)
     }
 
 }
