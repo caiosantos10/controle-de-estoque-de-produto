@@ -73,14 +73,32 @@
        <div>
         <h5 class="center-align">Buscar produtos</h5>
       </div>
-      
+
       <!-- Selecionáveis para escolha de qual filtro usar-->
       <div class="col s1">
         <label>Filtrar por: </label>
       </div>  
 
+      <div class="container row">
+        <div class="col s4">
+          <button @click="mostrarFiltroNome()" class="btn waves-effect waves-light" name="action">Nome
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+        <div class="col s4">
+          <button @click="mostrarFiltroAtivo()" class="btn waves-effect waves-light" name="action">Ativo/Inativo
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+        <div class="col s4">
+          <button @click="mostrarFiltroData()" class="btn waves-effect waves-light" name="action">Data
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </div>  
+
       <!--Filtragem de produtos por nome--> 
-      <form id="filtragem-nome" @submit.prevent="buscarPorNome">
+      <form id="filtragem-nome" @submit.prevent="buscarPorNome" >
         <div class="row ">
           <div>
             <input type="text" placeholder="Nome" v-model="aux.nome"> 
@@ -90,7 +108,7 @@
       </form>
 
       <!--Filtragem de produtos por ativo/inativo -->
-      <label>Filtrar por:</label>
+      
       <form id="filtragem-ativo" @submit.prevent="buscarPorAtivo">
         <div class="row ">
           <div class="col s3">
@@ -109,7 +127,7 @@
       </form>
 
       <!--Filtragem de produtos antes da Data -->
-      <form id="filtragem-data" @submit.prevent="buscarPorBeforeData">
+      <form id="filtragem-data1" @submit.prevent="buscarPorBeforeData">
         <div class="row ">
           <div>
             <label>Cadastrados até:</label>
@@ -120,7 +138,7 @@
       </form>
 
       <!--Filtragem de produtos depois da Data -->
-      <form id="filtragem-data" @submit.prevent="buscarPorAfterData">
+      <form id="filtragem-data2" @submit.prevent="buscarPorAfterData">
         <div class="row ">
           <div>
             <label>Cadastrados a partir de:</label>
@@ -202,6 +220,9 @@ export default {
 
   mounted(){
     this.listar();
+    this.mostrarFiltroNome();
+    this.mostrarFiltroAtivo();
+    this.mostrarFiltroData();
   },
 
   methods:{
@@ -289,6 +310,34 @@ export default {
 
       }
       
+    },
+
+    mostrarFiltroNome(){
+      if(document.getElementById('filtragem-nome').style.display == 'none'){
+        document.getElementById('filtragem-nome').style.display = 'block';
+      } else {
+        document.getElementById('filtragem-nome').style.display = 'none'
+      }
+         
+    },
+
+    mostrarFiltroAtivo(){
+      if(document.getElementById('filtragem-ativo').style.display == 'none'){
+        document.getElementById('filtragem-ativo').style.display = 'block';
+      } else {
+        document.getElementById('filtragem-ativo').style.display = 'none'
+      }
+         
+    },
+    mostrarFiltroData(){
+      if(document.getElementById('filtragem-data1').style.display == 'none'){
+        document.getElementById('filtragem-data1').style.display = 'block';
+        document.getElementById('filtragem-data2').style.display = 'block';
+      } else {
+        document.getElementById('filtragem-data1').style.display = 'none'
+        document.getElementById('filtragem-data2').style.display = 'none'
+      }
+         
     }
 
   }
