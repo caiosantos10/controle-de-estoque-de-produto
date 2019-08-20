@@ -71,14 +71,18 @@
       </form>
 
        <div>
-        <h5 class="center-align">Lista de produtos</h5>
-      </div> 
+        <h5 class="center-align">Buscar produtos</h5>
+      </div>
+      
+      <!-- Selecionáveis para escolha de qual filtro usar-->
+      <div class="col s1">
+        <label>Filtrar por: </label>
+      </div>  
 
       <!--Filtragem de produtos por nome--> 
-      <form @submit.prevent="buscarPorNome">
+      <form id="filtragem-nome" @submit.prevent="buscarPorNome">
         <div class="row ">
           <div>
-            <label>Filtrar por: Nome.</label>
             <input type="text" placeholder="Nome" v-model="aux.nome"> 
           </div>
              <button class="waves-effect waves-light btn-small">Buscar<i class="material-icons left">search</i></button>
@@ -86,10 +90,10 @@
       </form>
 
       <!--Filtragem de produtos por ativo/inativo -->
-      <form class="" @submit.prevent="buscarPorAtivo">
+      <label>Filtrar por:</label>
+      <form id="filtragem-ativo" @submit.prevent="buscarPorAtivo">
         <div class="row ">
           <div class="col s3">
-            <label>Filtrar por: </label>
             <label>Está Ativo?</label>
               <div class="switch">
                 <label>
@@ -104,17 +108,31 @@
         </div>
       </form>
 
-      <!--Filtragem de produtos por Data -->
-      <form class="" @submit.prevent="buscarPorBeforeData">
+      <!--Filtragem de produtos antes da Data -->
+      <form id="filtragem-data" @submit.prevent="buscarPorBeforeData">
         <div class="row ">
           <div>
-            <label>Filtrar por: Até a data...</label>
-            <input type="date" placeholder="Até a data..." v-model="aux.dataCadastro"> 
+            <label>Cadastrados até:</label>
+            <input type="date" placeholder="Até a data..." v-model="aux.dataAnterior"> 
           </div>
              <button class="waves-effect waves-light btn-small">Buscar<i class="material-icons left">search</i></button>
         </div>
       </form>
-      
+
+      <!--Filtragem de produtos depois da Data -->
+      <form id="filtragem-data" @submit.prevent="buscarPorAfterData">
+        <div class="row ">
+          <div>
+            <label>Cadastrados a partir de:</label>
+            <input type="date" placeholder="apartir da data..." v-model="aux.dataPosterior"> 
+          </div>
+             <button class="waves-effect waves-light btn-small">Buscar<i class="material-icons left">search</i></button>
+        </div>
+      </form>
+
+      <div>
+        <h5 class="center-align">Lista de produtos</h5>
+      </div>
 
       <table>
 
@@ -147,15 +165,10 @@
               <button @click="editar(produto)" class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
               <button @click="deletar(produto)" class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
             </td>
-
           </tr>
-
         </tbody>
-      
       </table>
-
     </div>
-
   </div>
 </template>
 
@@ -180,14 +193,15 @@ export default {
       produtos:[],
       aux: {
         nome:'',
-        dataCadastro:'',
+        dataAnterior:'',
+        dataPosterior:' ',
         ativo:''
       }
     }
   },
 
   mounted(){
-    this.listar()   
+    this.listar();
   },
 
   methods:{
@@ -217,12 +231,22 @@ export default {
     },
 
     buscarPorBeforeData(){
-      let data = new Date().getTime(this.aux.dataCadastro)
+      let data = new Date(`${this.aux.dataAnterior} `).getTime();
 
       Produto.buscarPorBeforeData(data).then(resposta => {
-        this.produtos = resposta.data
-        console.log(this.aux.dataCadastro, data)
-        this.aux = {}
+        this.produtos = resposta.data;
+        //console.log(this.aux.dataCadastro, data);
+        this.aux = {};
+      })
+    },
+
+    buscarPorAfterData(){
+      let data = new Date(`${this.aux.dataPosterior} `).getTime();
+
+      Produto.buscarPorAfterData(data).then(resposta => {
+        this.produtos = resposta.data;
+        //console.log(this.aux.dataCadastro, data);
+        this.aux = {};
       })
     },
     
@@ -244,8 +268,7 @@ export default {
             this.listar()
           }).catch(e => {
             console.log(e.response.data)
-          })
-
+          });
       }
       
     },
@@ -260,7 +283,7 @@ export default {
           this.listar();
         }).catch(e => {
 
-        })
+        });
 
       }
       

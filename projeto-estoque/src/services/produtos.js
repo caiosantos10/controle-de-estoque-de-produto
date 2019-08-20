@@ -28,6 +28,10 @@ export default {
     
     buscarPorBeforeData:(data) => {
         return http.get(`produtos/beforeData/${data}`)
+    },
+
+    buscarPorAfterData:(data) => {
+        return http.get(`produtos/afterData/${data}`)
     }
 
 }
