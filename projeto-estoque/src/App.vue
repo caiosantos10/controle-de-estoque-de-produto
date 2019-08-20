@@ -20,11 +20,11 @@
             </div>
             <div class="col s1">
               <label>Valor *</label>
-              <input id="preco" placeholder="Valor" step="0.010" v-model="produto.preco" required>
+              <input id="preco" type="number" placeholder="Valor" min="0" step="0.010" v-model="produto.preco" required>
             </div>
             <div class="col s2">
               <label>Quantidade *</label>
-              <input type="number" placeholder="Quantidade" v-model="produto.quantidade" required>
+              <input type="number" placeholder="Quantidade" min="0" v-model="produto.quantidade" required>
             </div>
             <div class="col s2">
               <label>Está Ativo?</label>
@@ -59,7 +59,7 @@
                   </label>
                 
                   <label>
-                    <input name="group1" type="radio" v-model="produto.unidade" v-bind:value="'UN'" checked/>
+                    <input name="group1" type="radio" v-model="produto.unidade" v-bind:value="'UN'"/>
                     <span>Unidade</span>
                   </label>
                 
@@ -185,7 +185,7 @@ export default {
         nome:'',
         quantidade:'',
         preco:'',
-        unidade:'',
+        unidade:'KG',
         dataCadastro: '',
         descricao:'',
         ativo:''
@@ -256,6 +256,7 @@ export default {
             this.produto.dataCadastro = new Date().getTime();
             Produto.salvar(this.produto).then(resposta => {
             this.produto = {}
+            this.produto.unidade = 'KG'
             alert('Salvo com sucesso!')
             this.listar()
           }).catch(e => {
@@ -264,6 +265,7 @@ export default {
       }else{
          Produto.atualizar(this.produto).then(resposta => {
             this.produto = {}
+            this.produto.unidade = 'KG'
             alert('Atualizado com sucesso!')
             this.listar()
           }).catch(e => {
